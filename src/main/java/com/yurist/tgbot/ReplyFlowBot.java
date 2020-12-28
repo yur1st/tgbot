@@ -22,7 +22,12 @@ public class ReplyFlowBot extends AbilityBot {
     public ReplyFlowBot(BotProperties conf) {
         super(conf.getToken(), conf.getBotName());
         this.conf = conf;
+        addExtension(new MrGoodBoy(this));
     }
+
+
+
+
 
     @Override
     public int creatorId() {
@@ -47,14 +52,7 @@ public class ReplyFlowBot extends AbilityBot {
         return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
     }
 
-    public Ability nice()  {
-        return Ability.builder()
-                .name("nice")
-                .privacy(PUBLIC)
-                .locality(ALL)
-                .action(ctx -> silent.send("You're wonderful!", ctx.chatId())
-                ).build();
-    }
+
 
     public Ability notNice() {
         return Ability.builder()
