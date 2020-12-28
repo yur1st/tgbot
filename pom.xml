@@ -39,6 +39,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- Telegram Dependencies -->
         <!-- https://mvnrepository.com/artifact/org.telegram/telegrambots-spring-boot-starter -->
         <dependency>
             <groupId>org.telegram</groupId>
@@ -50,6 +51,14 @@
             <artifactId>telegrambots-abilities</artifactId>
             <version>5.0.1</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.taskadapter/trello-java-wrapper -->
+        <dependency>
+            <groupId>com.taskadapter</groupId>
+            <artifactId>trello-java-wrapper</artifactId>
+            <version>0.14</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

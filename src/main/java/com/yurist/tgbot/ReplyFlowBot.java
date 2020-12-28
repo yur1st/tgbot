@@ -1,5 +1,7 @@
 package com.yurist.tgbot;
 
+import com.julienvey.trello.impl.TrelloImpl;
+import com.yurist.tgbot.trello.TrelloProperties;
 import org.springframework.stereotype.Component;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
@@ -17,21 +19,24 @@ import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 @Component
 public class ReplyFlowBot extends AbilityBot {
 
-    private final BotProperties conf;
+    private final BotProperties botProperties;
 
-    public ReplyFlowBot(BotProperties conf) {
-        super(conf.getToken(), conf.getBotName());
-        this.conf = conf;
-        addExtension(new MrGoodBoy(this));
+    private final TrelloImpl trello;
+
+    private final TrelloProperties trelloConfig;
+
+    public ReplyFlowBot(BotProperties botProperties, TrelloImpl trello, TrelloProperties trelloProperties) {
+        super(botProperties.getToken(), botProperties.getBotName());
+        this.botProperties = botProperties;
+        this.trello = trello;
+        this.trelloConfig = trelloProperties;
+        addExtension(new MrGoodBoy(this, trello, this.trelloConfig));
     }
-
-
-
 
 
     @Override
     public int creatorId() {
-        return conf.getCreatorId();
+        return botProperties.getCreatorId();
     }
 
     public ReplyFlow directionFlow() {
