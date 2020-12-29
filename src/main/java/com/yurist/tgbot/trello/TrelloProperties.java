@@ -1,5 +1,6 @@
 package com.yurist.tgbot.trello;
 
+import com.julienvey.trello.Trello;
 import com.julienvey.trello.impl.TrelloImpl;
 import com.julienvey.trello.impl.http.RestTemplateHttpClient;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class TrelloProperties {
     private Map<String, String> listId;
 
     @Bean
-    public TrelloImpl trello() {
+    public Trello trello() {
         return new TrelloImpl(trelloKey, trelloAccessToken, new RestTemplateHttpClient());
     }
 }

@@ -1,5 +1,6 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot.ability;
 
+import com.yurist.tgbot.bot.KeyboardFactory;
 import com.yurist.tgbot.model.Group;
 import com.yurist.tgbot.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,11 +71,11 @@ public class UserAbilities implements AbilityExtension {
 
 
     private void register(Long chatId, User user) {
-        subscriptionService.sendByList(Group.ADMINS, "Зарегистрировать?", chatId, KeyboardFactory.registerUser(user.getId()));
+        subscriptionService.sendByList(Group.ADMINS, "Зарегистрировать?", KeyboardFactory.registerUser(user.getId()));
     }
 
     private void deregister(Long chatId, User user) {
-        subscriptionService.sendByList(Group.ADMINS, "Кикнуть?", chatId, KeyboardFactory.registerUser(user.getId()));
+        subscriptionService.sendByList(Group.ADMINS, "Кикнуть?", KeyboardFactory.registerUser(user.getId()));
     }
 
 }

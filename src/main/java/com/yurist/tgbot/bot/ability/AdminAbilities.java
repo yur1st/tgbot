@@ -1,4 +1,4 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot.ability;
 
 import org.springframework.stereotype.Component;
 import org.telegram.abilitybots.api.bot.AbilityBot;

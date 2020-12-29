@@ -1,4 +1,4 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;

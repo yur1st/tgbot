@@ -1,15 +1,17 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot;
 
-import com.julienvey.trello.impl.TrelloImpl;
-import com.yurist.tgbot.trello.TrelloProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
 import org.telegram.abilitybots.api.objects.Reply;
 import org.telegram.abilitybots.api.objects.ReplyFlow;
+import org.telegram.abilitybots.api.util.AbilityExtension;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.function.Predicate;
 
 import static org.telegram.abilitybots.api.objects.Locality.ALL;
@@ -17,25 +19,24 @@ import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
 import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 
 @Component
-public class ReplyFlowBot extends AbilityBot {
+public class OwenBot extends AbilityBot {
 
 
     private final BotProperties botProperties;
 
-    private final TrelloImpl trello;
+    @Autowired
+    private List<AbilityExtension> abilityExtensions;
 
-    private final TrelloProperties trelloConfig;
-
-    public ReplyFlowBot(BotProperties botProperties, TrelloImpl trello, TrelloProperties trelloProperties) {
+    public OwenBot(BotProperties botProperties) {
         super(botProperties.getToken(), botProperties.getBotName());
         this.botProperties = botProperties;
-        this.trello = trello;
-        this.trelloConfig = trelloProperties;
-        addExtension(new MrGoodBoy(this, trello, this.trelloConfig));
-        addExtensions(new AdminAbilities(this));
-        addExtensions(new UserAbilities(this));
+
     }
 
+    @PostConstruct
+    public void init() {
+        abilityExtensions.forEach(this::addExtension);
+    }
 
     @Override
     public int creatorId() {

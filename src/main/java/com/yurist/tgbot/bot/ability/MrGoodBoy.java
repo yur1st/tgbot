@@ -1,8 +1,10 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot.ability;
 
+import com.julienvey.trello.Trello;
 import com.julienvey.trello.domain.Card;
-import com.julienvey.trello.impl.TrelloImpl;
+import com.yurist.tgbot.bot.KeyboardFactory;
 import com.yurist.tgbot.trello.TrelloProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
@@ -28,15 +30,14 @@ public class MrGoodBoy implements AbilityExtension {
 
     private final AbilityBot bot;
 
-    private final TrelloImpl trello;
+    @Autowired
+    private Trello trello;
 
-    private final TrelloProperties trelloProperties;
+    @Autowired
+    private TrelloProperties trelloProperties;
 
-    public MrGoodBoy(AbilityBot bot, TrelloImpl trello, TrelloProperties config) {
+    public MrGoodBoy(AbilityBot bot) {
         this.bot = bot;
-        this.trello = trello;
-
-        this.trelloProperties = config;
     }
 
     public Ability callUd() {

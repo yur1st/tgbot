@@ -1,4 +1,4 @@
-package com.yurist.tgbot;
+package com.yurist.tgbot.bot;
 
 import org.telegram.abilitybots.api.toggle.CustomToggle;
 
