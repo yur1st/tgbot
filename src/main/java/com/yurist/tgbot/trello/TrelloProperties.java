@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Map;
+
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "owen.trello")
@@ -15,17 +17,9 @@ public class TrelloProperties {
     private String trelloAccessToken;
 
     private String trelloKey;
-    private String udBoardId;
-    private String uddBoardId;
-    private String utpBoardId;
-    private String uitBoardId;
-    private String upmBoardId;
 
-    private String udInboxListId;
-    private String uddInboxListId;
-    private String utpInboxListId;
-    private String uitInboxListId;
-    private String upmInboxListId;
+    private Map<String, String> boardId;
+    private Map<String, String> listId;
 
     @Bean
     public TrelloImpl trello() {

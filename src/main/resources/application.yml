@@ -1,0 +1,18 @@
+owen:
+  tgbot:
+    bot-name: Owen 423
+  #Board ID's from Trello
+  trello:
+    board-id:
+      UD: 5fea32f1c2bf115c518d0424
+      UDD: 5fea32fb14885f39d1043982
+      UIT: 5fea32e9e132b379a21b3b81
+      UPM: =5e27df2812c99211516835fb
+      UTP: =5fea1d2dc3220f557648b843
+    #List ID's from Trello
+    list-id:
+      UD: 5fea340d8f980019141723ca
+      UDD: 5fea33ff94176c7be33239d4
+      UIT: 5fea3416e5fab32b0907720a
+      UPM: 5fea35eaec13d05b25388a7a
+      UTP: 5fea342284700e5413c73686

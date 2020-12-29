@@ -19,6 +19,7 @@ import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 @Component
 public class ReplyFlowBot extends AbilityBot {
 
+
     private final BotProperties botProperties;
 
     private final TrelloImpl trello;
@@ -31,6 +32,8 @@ public class ReplyFlowBot extends AbilityBot {
         this.trello = trello;
         this.trelloConfig = trelloProperties;
         addExtension(new MrGoodBoy(this, trello, this.trelloConfig));
+        addExtensions(new AdminAbilities(this));
+        addExtensions(new UserAbilities(this));
     }
 
 
@@ -56,8 +59,6 @@ public class ReplyFlowBot extends AbilityBot {
     private Predicate<Update> hasMessageWith(String msg) {
         return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
     }
-
-
 
     public Ability notNice() {
         return Ability.builder()
