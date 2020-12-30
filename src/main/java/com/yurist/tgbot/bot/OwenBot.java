@@ -30,7 +30,6 @@ public class OwenBot extends AbilityBot {
     public OwenBot(BotProperties botProperties) {
         super(botProperties.getToken(), botProperties.getBotName());
         this.botProperties = botProperties;
-
     }
 
     @PostConstruct
@@ -69,4 +68,5 @@ public class OwenBot extends AbilityBot {
                 .action(ctx -> silent().send("You're horrible!", ctx.chatId())
                 ).build();
     }
+
 }

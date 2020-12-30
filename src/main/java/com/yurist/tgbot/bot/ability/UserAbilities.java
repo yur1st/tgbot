@@ -1,6 +1,7 @@
 package com.yurist.tgbot.bot.ability;
 
 import com.yurist.tgbot.bot.KeyboardFactory;
+import com.yurist.tgbot.bot.handler.ResponseHandler;
 import com.yurist.tgbot.model.Group;
 import com.yurist.tgbot.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,14 @@ public class UserAbilities implements AbilityExtension {
 
     private final AbilityBot bot;
 
+    private final ResponseHandler responseHandler;
+
     @Autowired
     private SubscriptionService subscriptionService;
 
-    public UserAbilities(AbilityBot bot) {
+    public UserAbilities(AbilityBot bot, ResponseHandler responseHandler) {
         this.bot = bot;
+        this.responseHandler = responseHandler;
     }
 
     public Ability checkNewUser() {
@@ -52,6 +56,16 @@ public class UserAbilities implements AbilityExtension {
                         e.printStackTrace();
                     }
                 })
+                .build();
+    }
+
+    public Ability replyToStart() {
+        return Ability.builder()
+                .name("start")
+                .privacy(PUBLIC)
+                .locality(ALL)
+                .input(0)
+                .action(ctx -> responseHandler.replyToStart(ctx.chatId()))
                 .build();
     }
 
